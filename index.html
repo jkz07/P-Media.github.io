@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P-Media</title>
+    <style>
+        @charset "UTF-8";
+
+        @media screen and (min-width: 24px) {
+            body {
+                background-color: #13141a;
+                margin: 0;
+                font-family: Arial, sans-serif;
+                padding-top: 130px;
+            }
+
+            #features,
+            #sobre,
+            #jogos,
+            #rankings,
+            #perfil,
+            #versoes {
+                color: #ffffff;
+                margin: 80px;
+                font-size: 32px;
+            }
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 30px 80px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: #13141a;
+                z-index: 1000;
+            }
+
+            .header::before {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background-color: #ffffff;
+                transition: width 0.3s ease;
+                z-index: -1;
+            }
+
+            .logo img {
+                display: block;
+            }
+
+            .menu-container {
+                display: flex;
+                align-items: center;
+                position: relative;
+            }
+
+            .menu-toggle {
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                position: fixed;
+                top: 80px;
+                right: 150px;
+                width: 30px;
+                height: 43px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                transition: all 0.3s ease;
+                z-index: 2000;
+            }
+
+            .menu-toggle .bar {
+                background-color: #ffffff;
+                height: 3px;
+                width: 100px;
+                transition: all 0.3s ease;
+            }
+
+
+            .menu-toggle .bar:nth-child(1) {
+                transform: rotate(0deg);
+            }
+
+            .menu-toggle .bar:nth-child(2) {
+                opacity: 1;
+            }
+
+            .menu-toggle .bar:nth-child(3) {
+                transform: rotate(0deg);
+            }
+
+            .menu-toggle.open .bar:nth-child(1) {
+                transform: rotate(45deg);
+                position: relative;
+                top: 25px;
+            }
+
+            .menu-toggle.open .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.open .bar:nth-child(3) {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -10px;
+            }
+
+            .menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 750px;
+                border-left: 4px solid #ffffff;
+                border-radius: 0 0 0 5px;
+                padding: 70px;
+                z-index: 2;
+                transition: transform 0.3s ease;
+                transform: translateX(100%);
+            }
+
+            .menu.show {
+                display: block;
+                transform: translateX(0);
+                background-color: #13141a;
+                padding-top: 300px;
+            }
+
+            .menu a {
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                padding: 20px;
+                transition: background-color 0.5s ease;
+                text-align: center;
+                font-size: 18px;
+            }
+
+            .menu a:hover {
+                font-size: 22px;
+            }
+
+            .butoes1 {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                gap: 50px;
+            }
+
+            .butoes1 button {
+                background-color: #13141a;
+                width: 140px;
+                height: 40px;
+                border-radius: 11px 11px 0 0;
+                font-size: 20px;
+                text-decoration: none;
+                outline: none;
+                box-shadow: none;
+                margin-right: 0;
+                border: 2px solid transparent;
+                border-bottom: none;
+                cursor: pointer;
+            }
+
+            .butoes1 .but1 {
+                color: #fda543;
+                border-color: #fda543;
+            }
+
+            .butoes1 button.active {
+                background-color: #fda543;
+                color: #13141a;
+            }
+
+            .butoes1 .but2 {
+                color: #17c69b;
+                border-color: #17c69b;
+            }
+
+            .butoes1 .but2.active {
+                background-color: #17c69b;
+            }
+
+            .butoes1 .but3 {
+                color: #fb3640;
+                border-color: #fb3640;
+            }
+
+            .butoes1 .but3.active {
+                background-color: #fb3640;
+            }
+
+            .butoes1 .but4 {
+                color: #fa2f75;
+                border-color: #fa2f75;
+            }
+
+            .butoes1 .but4.active {
+                background-color: #fa2f75;
+            }
+
+            .content-container .tab-content {
+                display: none;
+            }
+
+            .content-container .tab-content.show {
+                display: block;
+            }
+
+            .img-jogo.saindo {
+                transform: translateX(100%);
+            }
+
+            .features-content {
+                display: flex;
+                gap: 20px;
+                align-items: stretch;
+                background-color: #fda543;
+                border-radius: 0 10px 10px 10px;
+                color: #13141a;
+                position: relative;
+            }
+
+            .features-content img {
+                max-width: 700px;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 0 10px 10px 0;
+                align-self: flex-start;
+            }
+
+            .txt1 {
+                flex: 1;
+                padding: 30px;
+                font-size: 24px;
+            }
+
+            .box {
+                position: relative;
+                width: 500px;
+                height: 200px;
+                background-color: #13141a;
+                border-radius: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+
+            .box::before {
+                content: "";
+                position: absolute;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(180deg, #17c69b, #fda543, #fa2f75, #fb3640);
+                animation: animate 5s linear infinite;
+            }
+
+            @keyframes animate {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .box::after {
+                content: "";
+                position: absolute;
+                background-color: black;
+                inset: 5px;
+                border-radius: inherit;
+            }
+
+            .box img {
+                position: relative;
+                z-index: 1;
+                width: 200px;
+            }
+
+            .content-sobre {
+                display: flex;
+                align-items: center;
+            }
+
+            .txt2 {
+                max-width: 1000px;
+                margin-left: 100px;
+            }
+
+            hr {
+                border: none;
+                height: 5px;
+                background-color: rgb(255, 255, 255);
+                width: 100%;
+                margin-top: 5px;
+                margin-bottom: 20px;
+            }
+
+            .card-content {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .card {
+                position: relative;
+                height: 400px;
+                width: 100%;
+                overflow: hidden;
+                margin: 10px;
+                border-radius: 10px;
+            }
+
+            .img-card {
+                height: 400px;
+                border-radius: 3px;
+                transition: 0.5s;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .card-texto {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                background: #fda543;
+                color: #13141a;
+                padding: 10px;
+                transition: height 0.5s ease, bottom 0.5s ease;
+                height: 40px;
+            }
+
+            h3 {
+                font-size: 40px;
+                margin-left: 10px;
+                margin-top: 2px;
+            }
+
+            .txt3 {
+                font-size: 22px;
+                margin-left: 20px;
+                margin-right: 30px;
+                margin-top: -30px;
+            }
+
+            .card:hover {
+                cursor: pointer;
+            }
+
+            .card:hover .card-texto {
+                height: 270px;
+                bottom: 0;
+                background: #fda543;
+            }
+
+            .card:hover .txt3 {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .ver {
+                display: block;
+                align-items: center;
+                border: 2px solid transparent;
+                background-color: #fda543;
+                color: #13141a;
+                text-align: center;
+                padding: 30px 60px;
+                font-size: 24px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin: 0 auto;
+                margin-top: 30px;
+            }
+
+            .ver:hover {
+                background-color: #13141a;
+                color: #fda543;
+                border-color: #fda543;
+                transform: scale(1.05);
+            }
+
+            .ver:focus {
+                outline: none;
+            }
+
+            .table {
+                color: #ffffff;
+                margin: 80px;
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .rankings-table {
+                width: 100%;
+                margin-top: 20px;
+                border-collapse: separate;
+                border-spacing: 0;
+                border: 2px solid #17c69b;
+                border-radius: 15px;
+                overflow: hidden;
+            }
+
+            .rankings-table thead {
+                background-color: #17c69b;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+            }
+
+            .rankings-table tfoot {
+                background-color: #13141a;
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+
+            .rankings-table th,
+            .rankings-table td {
+                border: 1px solid #17c69b;
+                text-align: center;
+            }
+
+            .rankings-table tbody tr:nth-child(even) {
+                background-color: #13141a;
+            }
+
+            .rankings-table tbody tr:nth-child(odd) {
+                background-color: #13141a;
+            }
+
+            .rankings-table th {
+                font-weight: bold;
+                color: #13141a;
+            }
+
+            .rankings-table td {
+                color: #ffffff;
+                font-size: 24px;
+            }
+
+            .rankings-table td:first-child {
+                color: #17c69b;
+                font-size: 28px;
+            }
+
+            .img-perfil {
+                width: 200px;
+                background-color: white;
+                height: 100%;
+                display: flex;
+                justify-content: left;
+            }
+
+            .rankings-table td.profile-cell {
+                display: flex;
+                align-items: center;
+            }
+
+            .rankings-table td.profile-cell img {
+                width: 120px;
+                height: 120px;
+                margin-right: 10px;
+            }
+
+            .rankings-table td.profile-cell span {
+                font-size: 24px;
+                color: #ffffff;
+            }
+
+            .rankings-table tbody tr {
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.3s ease, height 0.3s ease, color 0.3s ease;
+            }
+
+            .rankings-table tbody tr:hover {
+                background-color: #17c69b;
+                transform: scale(1.06);
+                height: 60px;
+
+                td {
+                    color: #13141a;
+                }
+
+                .rankings-table th,
+                .rankings-table td {
+                    border: 5px solid #13141a;
+                    text-align: center;
+                }
+            }
+
+            .container-p {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            .horizontal-container {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .card-body,
+            .container-a,
+            .cont-graf {
+                flex: 1;
+                margin: 0;
+            }
+
+
+            .card-body,
+            .container-a,
+            .cont-graf {
+                min-width: 0;
+            }
+
+            .txt4 {
+                flex: 1;
+                margin: 20px;
+                font-size: 22px;
+            }
+
+            .card-perfil {
+                width: 6000px;
+                border: 1px solid #fb3640;
+                border-radius: 10px;
+                overflow: hidden;
+                background-color: #13141a;
+                color: #fff;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .card-header {
+                display: flex;
+                padding: 16px;
+                align-items: center;
+            }
+
+            .user-img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                margin-right: 16px;
+            }
+
+            .user-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .user-text {
+                margin: 0;
+                color: #fff;
+                font-size: 21px;
+            }
+
+            .points-text {
+                margin: 4px 0 0 0;
+                margin-top: 10px;
+                color: #fff;
+                font-size: 21px;
+            }
+
+            .card-body {
+                padding: 16px;
+            }
+
+            .appears-in {
+                font-weight: bold;
+                margin-top: -20px;
+                font-size: 21px;
+                position: relative;
+                display: inline-block;
+            }
+
+            .appears-in::after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 1px;
+                background-color: #6d6c6c;
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+            }
+
+            li {
+                list-style-type: none;
+            }
+
+            .demos {
+                margin-left: -40px;
+                font-size: 18px;
+            }
+
+            .container-a {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                height: 100%;
+                margin-right: -100px;
+                margin-top: -60px;
+                height: auto;
+            }
+
+            .line {
+                background-color: #d32f2f;
+                width: 4px;
+                animation: grow 1.5s infinite alternate;
+            }
+
+            .line:nth-child(1),
+            .line:nth-child(9) {
+                height: 40px;
+                animation-delay: 0.1s;
+            }
+
+            .line:nth-child(2),
+            .line:nth-child(8) {
+                height: 60px;
+                animation-delay: 0.2s;
+            }
+
+            .line:nth-child(3),
+            .line:nth-child(7) {
+                height: 80px;
+                animation-delay: 0.3s;
+            }
+
+            .line:nth-child(4),
+            .line:nth-child(6) {
+                height: 100px;
+                animation-delay: 0.4s;
+            }
+
+            .line:nth-child(5) {
+                height: 120px;
+                animation-delay: 0.5s;
+            }
+
+            @keyframes grow {
+                0% {
+                    transform: scaleY(1);
+                }
+
+                100% {
+                    transform: scaleY(1.5);
+                }
+            }
+
+            .cont-graf {
+                display: flex;
+                align-items: flex-start;
+                gap: 0px;
+                margin-top: -200px;
+                flex-direction: column;
+            }
+
+            .img-graf {
+                width: 230px;
+                margin-top: -30px;
+                height: auto;
+                animation: rotation 10s infinite linear;
+                margin-left: -100px;
+            }
+
+            @keyframes rotation {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            ul.tb-graf {
+                list-style: none;
+                padding: 0;
+                margin-top: -180px;
+                margin-left: 150px;
+            }
+
+            ul.tb-graf li {
+                position: relative;
+                padding-left: 40px;
+                margin-bottom: 10px;
+            }
+
+            ul.tb-graf li::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+            }
+
+            ul.tb-graf li.q1::before {
+                background-color: #17c69b;
+            }
+
+            ul.tb-graf li.q2::before {
+                background-color: #fda543;
+            }
+
+            ul.tb-graf li.q3::before {
+                background-color: #fa2f75;
+            }
+
+            .card2 {
+                display: flex;
+                gap: 25px;
+                margin-top: 50px;
+                margin-bottom: 70px;
+            }
+
+            .card2 img {
+                width: 150px;
+                height: 150px;
+                border-radius: 20px;
+                transition: transform 0.3s, box-shadow 0.3s;
+                cursor: pointer;
+                position: relative;
+                z-index: 3;
+            }
+
+            .card2 img:hover {
+                transform: scale(1.05);
+            }
+
+
+            .card2 img.active {
+                transform: scale(1.2);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+
+            }
+
+            .jogos-table {
+                width: 100%;
+                margin-top: 20px;
+                border-collapse: separate;
+                border-spacing: 0;
+                border: 2px solid #fa2f75;
+                border-radius: 15px;
+                overflow: hidden;
+            }
+
+            .jogos-table thead {
+                width: 50%;
+                border-collapse: collapse;
+                border: 2px solid #ff4477;
+                background-color: #fa2f75;
+            }
+
+            .jogos-table th:nth-child(1) {
+                padding-right: 1000px;
+            }
+
+            .jogos-table th:nth-child(2) {
+                padding-left: 350px;
+            }
+
+            td {
+                padding: 20px;
+
+                text-align: left;
+            }
+
+            td:last-child {
+                text-align: right;
+            }
+
+            .tj,
+            td {
+                color: white;
+            }
+
+            .lihn::after {
+                content: "";
+                border-bottom: 4px dotted #fa2f75;
+                position: absolute;
+                left: 150px;
+                right: 270px;
+                transform: translateY(-50%);
+                margin-top: 30px;
+            }
+
+            footer {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 10px 300px;
+                color: white;
+                border-top: 2px solid #ffffff;
+            }
+
+            .lhn {
+                border: none;
+                width: 1px;
+                background-color: rgb(255, 255, 255);
+                height: 50px;
+                margin-bottom: 0px;
+                margin-top: 0px;
+            }
+
+            .content-container2 .tab-content {
+                display: none;
+            }
+
+            .content-container2 .tab-content.show {
+                display: block;
+            }
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="./ASSETS/Logo.png" alt="Logo" width="450"> <!-- Substitua pelo caminho da sua logo -->
+        </div>
+        <div class="menu-container">
+            <button class="menu-toggle" id="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="menu" id="menu">
+                <a href="#features">Features</a>
+                <a href="#sobre">Sobre a empresa</a>
+                <a href="#jogos">Jogos</a>
+                <a href="#rankings">Rankings</a>
+                <a href="#perfil">Perfil</a>
+                <a href="#versoes">Versões</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="features">
+        <h1>Features</h1>
+        <div class="butoes1">
+            <button class="but1 active" onclick="openTab('jogos')" data-target-text="Jogos"
+                data-imagem="DemoGame.jpg">Jogos</button>
+            <button class="but2" onclick="openTab('rankings')" data-target-text="Rankings">Rankings</button>
+            <button class="but3" onclick="openTab('perfil')" data-target-text="Perfil">Perfil</button>
+            <button class="but4" onclick="openTab('versoes')" data-target-text="Versões">Versões</button>
+        </div>
+        <div class="content-container">
+            <div class="jogos tab-content show">
+                <div class="features-content">
+                    <div class="container">
+                        <div class="txt1">
+                            <h2>Jogos</h2>
+                            <p>Ut felis purus, dictum in dui ut, dignissim varius mauris. Quisque a ante vitae nulla
+                                interdum placerat. Morbi aliquam ut urna eget luctus. Pellentesque laoreet lobortis
+                                condimentum.
+                                Praesent id pharetra mauris, et euismod lectus. Suspendisse quam eros, pharetra quis
+                                egestas sit amet,
+                                placerat dapibus odio. Integer vel augue eget magna sodales feugiat. Maecenas sed nunc
+                                non orci
+                                tincidunt pulvinar. Nam congue sed turpis rutrum auctor. Nulla pellentesque lacinia
+                                maximus. Morbi
+                                aliquam, nunc at finibus gravida, nibh quam suscipit sapien, sed ornare orci orci ac
+                                massa. Donec id
+                                diam vel ipsum semper aliquam. Praesent ac purus quis mauris suscipit eleifend sed vel
+                                ex. Aenean
+                                consequat mauris erat, eu bibendum massa pretium et. Phasellus gravida, augue at
+                                condimentum iaculis,
+                                leo nisi fermentum nunc, sed blandit diam ex et turpis.</p>
+                        </div>
+                    </div>
+                    <img src="./ASSETS/Features/Jogos.jpg" alt="jogos" class="img-jogo">
+                </div>
+            </div>
+
+            <div class="rankings tab-content">
+                <div class="features-content">
+                    <div class="container2">
+                        <div class="txt1">
+                            <h2>Rankings</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget lacus eget
+                                ligula dapibus condimentum in a mauris. Praesent venenatis gravida ultricies. Aenean
+                                maximus ante velit, vitae eleifend massa malesuada et. In varius velit non accumsan
+                                tristique. Donec a metus non purus congue tincidunt. Vivamus viverra ex nec mi convallis
+                                feugiat. Donec lacinia et tortor id porta. Sed lacinia arcu lorem, ac vulputate mi
+                                finibus id.</p>
+                        </div>
+                    </div>
+                    <img src="./ASSETS/Features/Rankings.jpg" alt="rankigns" class="img-jogo">
+                </div>
+            </div>
+
+            <div class="perfil tab-content">
+                <div class="features-content">
+                    <div class="container3">
+                        <div class="txt1">
+                            <h2>Perfil</h2>
+                            <p>Nulla bibendum id sapien a euismod. Fusce eu augue felis. Aenean sollicitudin sagittis
+                                erat, ac porttitor nulla consequat sed. Curabitur et fermentum metus. Sed non neque
+                                vitae sem cursus finibus eget id orci. Ut cursus volutpat cursus. Aliquam vitae ex a
+                                urna lobortis rhoncus. Vivamus semper ipsum sed pellentesque ultricies. Etiam eu orci
+                                turpis. Curabitur quam metus, eleifend sollicitudin augue in, suscipit fringilla leo.
+                                Duis consectetur sed odio et vulputate. Vestibulum pellentesque, diam eget imperdiet
+                                suscipit, augue sapien venenatis purus, ac lacinia nunc sem ut tortor.</p>
+                        </div>
+                    </div>
+                    <img src="./ASSETS/Features/Perfil.jpg" alt="perfil" class="img-jogo">
+                </div>
+            </div>
+
+            <div class="versoes tab-content">
+                <div class="features-content">
+                    <div class="container4">
+                        <div class="txt1">
+                            <h2>Versões</h2>
+                            <p>Nulla iaculis dolor sed nisi egestas cursus. Nullam laoreet mauris mauris, ut hendrerit
+                                est lacinia molestie. Etiam vel volutpat risus, ut fermentum nisl. Nullam scelerisque
+                                eros non purus iaculis, fringilla vehicula nunc tincidunt. Nunc euismod nunc id enim
+                                dapibus, ac pharetra lacus consequat. Pellentesque ac aliquam massa, vel efficitur quam.
+                                In hac habitasse platea dictumst. Aenean vitae velit eu lorem pulvinar efficitur. Nam
+                                hendrerit tincidunt elementum. Phasellus vel lorem turpis. Pellentesque molestie ligula
+                                ex, ac aliquam ex mattis sed.</p>
+                        </div>
+                    </div>
+                    <img src="./ASSETS/Features/Versões.jpg" alt="versoed" class="img-jogo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre">
+        <h1>Sobre a empresa</h1>
+        <hr>
+        <div class="content-sobre">
+            <div class="box">
+                <img src="./ASSETS/Logo.png" alt="logo2">
+            </div>
+            <div class="txt2">
+                <p>A P-Media está desenvolvendo uma plataforma de jogos web, onde os jogadores poderão se reunir para
+                    jogar seus games preferidos. Será um plataforma com foco em compartilhar jogos, trocar experiências
+                    e auxiliar a comunidade de games a crescer.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="jogos">
+        <h1>jogos</h1>
+        <hr>
+        <div class="card-content">
+            <div class="card">
+                <img src="./ASSETS/Jogos/DemoGame.jpg" alt="Demo Game" class="img-card">
+                <div class="card-texto">
+                    <h3>Demo Game</h3>
+                    <p class="txt3">
+                        Fusce vel lorem imperdiet turpis aliquam vestibulum sit amet non nunc. Donec vel ipsum varius,
+                        egestas sem vitae, faucibus neque. Morbi fringilla ipsum eget ligula bibendum, in tempor magna
+                        egestas. Etiam ac commodo nulla. Aliquam ac nisl vel nisi varius hendrerit. Etiam at luctus
+                        arcu. Integer non laoreet mauris. Duis eu sapien malesuada, fringilla sapien eu, facilisis
+                        felis. Vivamus posuere gravida orci, sit amet aliquet augue commodo eget.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./ASSETS/Jogos/DemoGame2.jpg" alt="Demo Game II" class="img-card">
+                <div class="card-texto">
+                    <h3>Demo Game II</h3>
+                    <p class="txt3">
+                        Etiam et luctus arcu. Integer non laoreet mauris. Duis eu sapien malesuada, fringilla sapien eu,
+                        facilisis odio. Morbi fringilla ipsum eget ligula bibendum, in tempor magna egestas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./ASSETS/Jogos/DemoGameRemastered.jpg" alt="Demo Game rem" class="img-card">
+                <div class="card-texto">
+                    <h3>Demo Game Remastered</h3>
+                    <p class="txt3">
+                        Vestibulum eu feugiat urna. Mauris vel tincidunt lectus, ac ultricies est. Morbi sit amet sem
+                        auctor, dictum odio et, dapibus lectus. Cras sit amet sollicitudin ipsum. Aenean sit amet erat
+                        risus. Suspendisse faucibus ligula at lacus tristique, et ultrices ipsum commodo. Fusce posuere
+                        vel turpis eget porta. Nulla lacinia elit id vehicula egestas. Etiam hendrerit est non aliquet
+                        euismod. Curabitur a egestas mi. Sed congue commodo tincidunt.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./ASSETS/Jogos/DemoGameFinale.jpg" alt="Demo Game II" class="img-card">
+                <div class="card-texto">
+                    <h3>Demo Game III: Finale</h3>
+                    <p class="txt3">
+                        Integer hendrerit leo sit amet lacus placerat, a mattis tellus accumsan. Pellentesque imperdiet
+                        mi nulla, at laoreet leo dignissim et. Integer euismod ullamcorper mauris. Duis id nisi eget
+                        orci sodales commodo non vitae mauris. Fusce lobortis eros eu viverra sollicitudin. Maecenas
+                        cursus fermentum ex eu finibus. Donec non nisl vitae nibh pellentesque vestibulum facilisis sed
+                        odio. Mauris vestibulum nisi a dictum ornare.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button class="ver">Ver Mais</button>
+
+    </section>
+
+    <section id="rankings">
+        <h1>Rankings</h1>
+        <hr>
+        <table class="rankings-table">
+            <thead>
+                <tr>
+                    <th>Pos.</th>
+                    <th></th>
+                    <th>Data</th>
+                    <th>Pontos</th>
+                    <th>Jogo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-selectable>
+                    <td>1</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">Tee</span>
+                    </td>
+                    <td>07/01/2023</td>
+                    <td>20.000pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <tr data-selectable>
+                    <td>2</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">TeeAyEe</span>
+                    </td>
+                    <td>08/08/2022</td>
+                    <td>18.000pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <tr data-selectable>
+                    <td>3</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">Tamie</span>
+                    </td>
+                    <td>09/08/2022</td>
+                    <td>16.000pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <tr data-selectable>
+                    <td>4</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">Tambob</span>
+                    </td>
+                    <td>22/10/2022</td>
+                    <td>14.000pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <tr data-selectable>
+                    <td>5</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">Treacherous Tam</span>
+                    </td>
+                    <td>15/11/2022</td>
+                    <td>12.000pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <tr data-selectable>
+                    <td>6</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">AreEnEff</span>
+                    </td>
+                    <td>07/06/2022</td>
+                    <td>10.000pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <tr data-selectable>
+                    <td>7</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">Nigelster</span>
+                    </td>
+                    <td>06/06/2022</td>
+                    <td>9.500pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <tr data-selectable>
+                    <td>8</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">Ryan-nova</span>
+                    </td>
+                    <td>15/01/2023</td>
+                    <td>8.000pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <tr data-selectable>
+                    <td>9</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">Ryanbob</span>
+                    </td>
+                    <td>09/01/2023</td>
+                    <td>7.980pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <tr data-selectable>
+                    <td>10</td>
+                    <td class="profile-cell">
+                        <img src="./ASSETS/Rankings/Profile.png" alt="perfil" class="img-perfil">
+                        <span class="nomerk">Ratty Ryan</span>
+                    </td>
+                    <td>09/01/2023</td>
+                    <td>7.500pts</td>
+                    <td>Demo Game</td>
+                </tr>
+                <!-- Adicione mais linhas conforme necessário -->
+            </tbody>
+
+        </table>
+    </section>
+
+    <section id="perfil">
+        <h1>Perfil</h1>
+        <hr>
+        <div class="container-p">
+            <div class="left-text">
+                <div class="txt4">Nulla vitae erat interdum, sodales eros eu, varius mi. In eget lectus facilisis,
+                    ullamcorper diam ut, malesuada tortor. Morbi at ligula ut augue semper pharetra quis non lorem. Ut
+                    vulputate mollis nulla, nec lobortis quam malesuada eu. Quisque ut nibh massa. </div>
+            </div>
+            <div class="card-perfil">
+                <!-- Conteúdo do card-perfil -->
+                <div class="card-header">
+                    <img class="user-img" src="./ASSETS/Perfil/Player.png" alt="Imagem do Usuário">
+                    <div class="user-info">
+                        <p class="user-text user-nick">User nick</p>
+
+                        <p class="points-text">Pontos totais: 1M</p>
+                    </div>
+                </div>
+                <div class="horizontal-container">
+                    <div class="card-body">
+                        <p class="appears-in">Aparece nos rankigns de...</p>
+                        <div class="demos">
+                            <ul>
+                                <li>Demo Game</li>
+                                <li>Demo Game II</li>
+                                <li>Demo Game III: Finale</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="container-a">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="cont-graf">
+                        <p>Gêneros mais jogados</p>
+                        <img src="./ASSETS/circulo-gráfico.png" alt="grafico" class="img-graf">
+                        <ul class="tb-graf">
+                            <li class="q1">RPG</li>
+                            <li class="q2">Rouguelike</li>
+                            <li class="q3">Outros</li>
+                        </ul>
+                        <p>Minutos jogados: 12.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="versoes">
+        <h1>Versões</h1>
+        <hr>
+        <div class="card2">
+            <img src="./ASSETS/Jogos/DemoGame.jpg" alt="LEGO" class="ft1 active" onclick="mostrarTabela('tabela1')">
+            <img src="./ASSETS/Jogos/DemoGame2.jpg" alt="Gow" class="ft2" onclick="mostrarTabela('tabela2')">
+            <img src="./ASSETS/Jogos/DemoGameFinale.jpg" alt="GT" class="ft3" onclick="mostrarTabela('tabela3')">
+            <img src="./ASSETS/Jogos/DemoGameRemastered.jpg" alt="Miranha" class="ft4"
+                onclick="mostrarTabela('tabela4')">
+        </div>
+
+        <div class="content-container2">
+            <div id="tabela1" class="tab-content2 active">
+                <table class="jogos-table">
+                    <thead>
+                        <tr>
+                            <th>Demo Game</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>V1</td>
+                            <td class="lihn">22/04/2016</td>
+                        </tr>
+                        <tr>
+                            <td>V2</td>
+                            <td class="lihn">22/10/2016</td>
+                        </tr>
+                        <tr>
+                            <td>V3</td>
+                            <td class="lihn">22/04/2017</td>
+                        </tr>
+                        <tr>
+                            <td>V4</td>
+                            <td class="lihn">22/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>V5</td>
+                            <td class="lihn">22/04/2018</td>
+                        </tr>
+                        <tr>
+                            <td>V6</td>
+                            <td class="lihn">22/10/2018</td>
+                        </tr>
+                        <tr>
+                            <td>V7</td>
+                            <td class="lihn">22/04/2019</td>
+                        </tr>
+                        <tr>
+                            <td>V8</td>
+                            <td class="lihn">22/10/2019</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="tabela2" class="tab-content2">
+                <table class="jogos-table">
+                    <thead>
+                        <tr>
+                            <th>Demo Game II</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>V1</td>
+                            <td class="lihn">21/04/2016</td>
+                        </tr>
+                        <tr>
+                            <td>V2</td>
+                            <td class="lihn">16/11/2016</td>
+                        </tr>
+                        <tr>
+                            <td>V3</td>
+                            <td class="lihn">22/04/2017</td>
+                        </tr>
+                        <tr>
+                            <td>V4</td>
+                            <td class="lihn">26/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>V5</td>
+                            <td class="lihn">08/04/2018</td>
+                        </tr>
+                        <tr>
+                            <td>V6</td>
+                            <td class="lihn">12/07/2018</td>
+                        </tr>
+                        <tr>
+                            <td>V7</td>
+                            <td class="lihn">24/06/2019</td>
+                        </tr>
+                        <tr>
+                            <td>V8</td>
+                            <td class="lihn">12/10/2019</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="tabela3" class="tab-content2">
+                <table class="jogos-table">
+                    <thead>
+                        <tr>
+                            <th>Demo Game: Remastered</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>V1</td>
+                            <td class="lihn">17/08/2016</td>
+                        </tr>
+                        <tr>
+                            <td>V2</td>
+                            <td class="lihn">31/10/2016</td>
+                        </tr>
+                        <tr>
+                            <td>V3</td>
+                            <td class="lihn">06/07/2017</td>
+                        </tr>
+                        <tr>
+                            <td>V4</td>
+                            <td class="lihn">28/10/2017</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="tabela4" class="tab-content2">
+                <table class="jogos-table">
+                    <thead>
+                        <tr>
+                            <th>Demo Game III: Finale</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>V1</td>
+                            <td class="lihn">22/04/2016</td>
+                        </tr>
+                        <tr>
+                            <td>V2</td>
+                            <td class="lihn">22/10/2016</td>
+                        </tr>
+                        <tr>
+                            <td>V3</td>
+                            <td class="lihn">22/04/2017</td>
+                        </tr>
+                        <tr>
+                            <td>V4</td>
+                            <td class="lihn">22/10/2017</td>
+                        </tr>
+                        <tr>
+                            <td>V5</td>
+                            <td class="lihn">22/04/2018</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>Termos e condições</p>
+        <hr class="lhn">
+        <p>P-Media &copy; 2022</p>
+        <hr class="lhn">
+        <p>Politicas de privacidade</p>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('menu');
+            const header = document.querySelector('.header');
+
+            menuToggle.addEventListener('click', function () {
+                this.classList.toggle('open');
+                menu.classList.toggle('show');
+                header.classList.toggle('menu-open');
+            });
+
+            const menuItems = document.querySelectorAll('.menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    menuToggle.classList.remove('open');
+                    menu.classList.remove('show');
+                    header.classList.remove('menu-open');
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            window.openTab = function (tabName) {
+
+                const contents = document.querySelectorAll('.tab-content');
+                contents.forEach(content => content.classList.remove('show'));
+
+                const buttons = document.querySelectorAll('.butoes1 button');
+                buttons.forEach(button => button.classList.remove('active'));
+
+                const activeTab = document.querySelector(`.${tabName}`);
+                if (activeTab) {
+                    activeTab.classList.add('show');
+
+                    const activeButton = document.querySelector(`.butoes1 .but${['jogos', 'rankings', 'perfil', 'versoes'].indexOf(tabName) + 1}`);
+                    if (activeButton) {
+                        activeButton.classList.add('active');
+                    }
+
+                    const container = activeTab.querySelector('.features-content');
+                    if (container) {
+                        switch (tabName) {
+                            case 'jogos':
+                                container.style.backgroundColor = '#fda543';
+                                break;
+                            case 'rankings':
+                                container.style.backgroundColor = '#17c69b';
+                                break;
+                            case 'perfil':
+                                container.style.backgroundColor = '#fb3640';
+                                break;
+                            case 'versoes':
+                                container.style.backgroundColor = '#fa2f75';
+                                break;
+                            default:
+                                container.style.backgroundColor = '#fda543';
+                        }
+                    }
+                }
+            };
+
+
+            const botoes = document.querySelectorAll('.butoes1 button');
+            const velocidade = 100;
+
+            botoes.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    clearInterval(botao.intervalo);
+
+                    const textoAtual = botao.textContent;
+                    const novoTexto = botao.getAttribute('data-target-text');
+                    let i = 0;
+
+
+                    const textoAnimado = document.createElement('span');
+                    textoAnimado.textContent = '';
+                    botao.innerHTML = '';
+                    botao.appendChild(textoAnimado);
+
+                    botao.intervalo = setInterval(() => {
+                        textoAnimado.textContent = novoTexto.substring(0, i + 1);
+                        i++;
+                        if (i >= novoTexto.length) {
+                            clearInterval(botao.intervalo);
+                        }
+                    }, velocidade);
+                });
+            });
+        });
+
+
+
+        function mostrarTabela(idTabela) {
+            const tabelas = document.querySelectorAll('.tab-content2');
+            const imagens = document.querySelectorAll('.card2 img');
+
+            tabelas.forEach(tabela => {
+                tabela.style.display = 'none';
+            });
+            imagens.forEach(imagem => {
+                imagem.classList.remove('active');
+            });
+
+            document.getElementById(idTabela).style.display = 'block';
+            document.querySelector(`img[onclick="mostrarTabela('${idTabela}')"]`).classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            mostrarTabela('tabela1');
+        });
+
+    </script>
+</body>
+
+</html>
